@@ -6,13 +6,14 @@ $(() => {
     }
 
     loadData();
-    var path = 'https://firebasestorage.googleapis.com/v0/b/coffeeapp-171e9.appspot.com/o/';
-    var token = '?alt=media&token=b89c44db-789c-4946-944e-68019da9ee8d';
+    var path = '../';//'https://firebasestorage.googleapis.com/v0/b/coffeeapp-171e9.appspot.com/o/';
+    var token = '';//'?alt=media&token=b89c44db-789c-4946-944e-68019da9ee8d';
     var db = JSON.parse(localStorage.getItem('productos'));
     var imgUrl = [];
     var productKeys = Object.keys(db.productos);
+    var subProd;
     productKeys.map((key) => {
-        let subProd = Object.keys(db.productos[key]);
+        subProd = Object.keys(db.productos[key]);
         subProd.map((sub) => {
             if (db.productos[key][sub].img) {
                 let item = new Image(key, sub, path + db.productos[key][sub].img.split('/').join('%2F') + token)
@@ -43,26 +44,26 @@ $(() => {
             }
         }
     });
-    subProd.map((sub) => {
+    // subProd.map((sub) => {
         for (let i = 0; i < imgUrl.length; i++) {
             // if(db.productos.Bocadillos[sub]
-            $('.products').append(`<div class="col-lg-3 col-md-4">
+            if (imgUrl[i].category === 'Bocadillos') {
+                $('.products').append(`<div class="col-lg-3 col-md-4">
                                     <div class="product">
                                         <div class="image">
                                             <a href="shop-detail.html">
-                                                <img src="../img/product1.jpg" alt="" class="../img-fluid image1">
+                                                <img src="${imgUrl[i].path}" alt="" class="img-fluid image1">
                                             </a>
                                         </div>
                                         <div class="text">
-                                            <h3 class="h5">
-                                                <a href="shop-detail.html">Fur coat with very but very very long name</a>
-                                            </h3>
-                                            <p class="price">$143.00</p>
+                                            <h3 class="h5 mb-0">${db.productos.Bocadillos[imgUrl[i].type].name}</h3>
+                                            <p class="price">${db.productos.Bocadillos[imgUrl[i].type].price} €</p>
                                         </div>
                                     </div>
                                 </div>`);
+            }
         }
-    });
+    // });
 
     /**
      * Load the database from firebase
