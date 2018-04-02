@@ -16,14 +16,14 @@ $(() => {
         subProd = Object.keys(db.productos[key]);
         subProd.map((sub) => {
             if (db.productos[key][sub].img) {
-                let item = new Image(key, sub, db.productos[key][sub].img.split('/').join('%2F'))
+                let item = new Image(key, sub, db.productos[key][sub].img)
                 imgUrl.push(item);
             }
         })
     });
-    let ref = new Image('Bebidas', 'Refrescos', 'img%2Fref%2Fref-min.jpg');
+    let ref = new Image('Bebidas', 'Refrescos', 'img/ref/ref-min.jpg');
     imgUrl.push(ref);
-    let zum = new Image('Bebidas', 'Zumos', 'img%2Fzum%2Fzum-min.jpg');
+    let zum = new Image('Bebidas', 'Zumos', 'img/zum/zum-min.jpg');
     imgUrl.push(zum);
 
     productKeys.map((p) => {
