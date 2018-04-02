@@ -16,14 +16,14 @@ $(() => {
         subProd = Object.keys(db.productos[key]);
         subProd.map((sub) => {
             if (db.productos[key][sub].img) {
-                let item = new Image(key, sub, path + db.productos[key][sub].img.split('/').join('%2F') + token)
+                let item = new Image(key, sub, db.productos[key][sub].img.split('/').join('%2F'))
                 imgUrl.push(item);
             }
         })
     });
-    let ref = new Image('Bebidas', 'Refrescos', path + 'img%2Fref%2Fref-min.jpg' + token);
+    let ref = new Image('Bebidas', 'Refrescos', 'img%2Fref%2Fref-min.jpg');
     imgUrl.push(ref);
-    let zum = new Image('Bebidas', 'Zumos', path + 'img%2Fzum%2Fzum-min.jpg' + token);
+    let zum = new Image('Bebidas', 'Zumos', 'img%2Fzum%2Fzum-min.jpg');
     imgUrl.push(zum);
 
     productKeys.map((p) => {
@@ -52,7 +52,7 @@ $(() => {
                                     <div class="product">
                                         <div class="image">
                                             <a href="shop-detail.html">
-                                                <img src="${imgUrl[i].path}" alt="" class="img-fluid image1">
+                                                <img src="${path + imgUrl[i].path}" alt="" class="img-fluid image1">
                                             </a>
                                         </div>
                                         <div class="text">
